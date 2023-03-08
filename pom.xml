@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>br.gov.sp.prodesp.idp</groupId>
+	<artifactId>keycloak-spi-kafka-parent</artifactId>
+
+	<version>0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<name>Keycloak SPI Parent - IDP</name>
+	<description>Keycloak SPI Parent - IDP</description>
+
+	<properties>
+		<maven.compiler.source>11</maven.compiler.source>
+		<maven.compiler.target>11</maven.compiler.target>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<version.keycloak>21.0.1</version.keycloak>
+		<version.kafka-clients>3.3.2</version.kafka-clients>
+		<version.wildfly.maven.plugin>1.1.0.Final</version.wildfly.maven.plugin>
+	</properties>
+
+	<modules>
+		<module>idpsp-ear</module>
+		<module>idpsp-spi</module>
+	</modules>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.keycloak.bom</groupId>
+				<artifactId>keycloak-spi-bom</artifactId>
+				<version>${version.keycloak}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.keycloak</groupId>
+				<artifactId>keycloak-server-spi-private</artifactId>
+				<scope>provided</scope>
+				<version>${version.keycloak}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.keycloak</groupId>
+				<artifactId>keycloak-services</artifactId>
+				<scope>provided</scope>
+				<version>${version.keycloak}</version>
+			</dependency>
+			<dependency>
+				<groupId>br.gov.sp.prodesp.idp</groupId>
+				<artifactId>keycloak-spi-kafka</artifactId>
+				<version>${project.version}</version>
+				<type>jar</type>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.kafka</groupId>
+				<artifactId>kafka-clients</artifactId>
+				<version>${version.kafka-clients}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.wildfly.plugins</groupId>
+					<artifactId>wildfly-maven-plugin</artifactId>
+					<version>${version.wildfly.maven.plugin}</version>
+					<configuration>
+						<skip>true</skip>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+</project>
