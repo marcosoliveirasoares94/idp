@@ -17,12 +17,11 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<version.keycloak>21.0.1</version.keycloak>
 		<version.kafka-clients>3.3.2</version.kafka-clients>
-		<version.wildfly.maven.plugin>1.1.0.Final</version.wildfly.maven.plugin>
 	</properties>
 
 	<modules>
-		<module>idpsp-ear</module>
-		<module>idpsp-spi</module>
+		<module>ear</module>
+		<module>event-listener</module>
 	</modules>
 
 	<dependencyManagement>
@@ -36,13 +35,13 @@
 			</dependency>
 			<dependency>
 				<groupId>org.keycloak</groupId>
-				<artifactId>keycloak-server-spi-private</artifactId>
+				<artifactId>keycloak-services</artifactId>
 				<scope>provided</scope>
 				<version>${version.keycloak}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.keycloak</groupId>
-				<artifactId>keycloak-services</artifactId>
+				<artifactId>keycloak-server-spi-private</artifactId>
 				<scope>provided</scope>
 				<version>${version.keycloak}</version>
 			</dependency>
@@ -57,21 +56,11 @@
 				<artifactId>kafka-clients</artifactId>
 				<version>${version.kafka-clients}</version>
 			</dependency>
+			<dependency>
+				<groupId>org.jboss.logging</groupId>
+				<artifactId>jboss-logging</artifactId>
+				<version>3.4.3.Final</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
-
-	<build>
-		<pluginManagement>
-			<plugins>
-				<plugin>
-					<groupId>org.wildfly.plugins</groupId>
-					<artifactId>wildfly-maven-plugin</artifactId>
-					<version>${version.wildfly.maven.plugin}</version>
-					<configuration>
-						<skip>true</skip>
-					</configuration>
-				</plugin>
-			</plugins>
-		</pluginManagement>
-	</build>
 </project>
